@@ -61,5 +61,8 @@ exchangeButton.addEventListener("click", () => {
       // Update the result in the UI
       exchangeRateDisplayElement.innerText = exchangeRateFormatted;
       outputTextElement.innerText = `The equivalent for ${amountFormatted} are ${exchangeAmountFormatted}`;
+    })
+    .catch(err => {
+        outputTextElement.innerText = `Sorry, we have technical difficulties`;
     });
 });
