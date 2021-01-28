@@ -25,7 +25,7 @@ const DEFAULT_VALUE = 0;
 let fund = DEFAULT_VALUE;
 let remainingMoney = DEFAULT_VALUE;
 let itemCost = DEFAULT_VALUE;
-let TotalCost = DEFAULT_VALUE;
+let totalCost = DEFAULT_VALUE;
 
 calculationBtn.addEventListener("click", checkFundInput);
 extraFundBtn.addEventListener("click", checkExtraFund);
@@ -43,13 +43,13 @@ function valueFormatted(value){
     return parseFloat(value).toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 }
 
-function ExtraFundShow(fund, TotalCost, remainingMoney){  
+function extraFundShow(fund, totalCost, remainingMoney){  
     const fundFormatted = valueFormatted(fund);
-    const TotalCostFormatted = valueFormatted(TotalCost);
+    const totalCostFormatted = valueFormatted(totalCost);
     const remainingMoneyFormatted = valueFormatted(remainingMoney);
     
     fundTextElemnt.innerHTML = `Your Fund is ${fundFormatted}`;
-    totalCostElement.innerHTML = `Purchase Cost:  ${TotalCostFormatted}`;
+    totalCostElement.innerHTML = `Purchase Cost:  ${totalCostFormatted}`;
     remainingMoneyElement.innerHTML = `Remaining money: ${remainingMoneyFormatted}`
     
     fundElement.classList.add("hide");
@@ -83,9 +83,9 @@ function extraFundCalculation(){
     const extraFund = parseFloat(extraFundAmountElement.value);
     fund = parseFloat(fundElement.value);
     fund += extraFund;
-    remainingMoney = fund - TotalCost;    
+    remainingMoney = fund - totalCost;    
     
-    ExtraFundShow(fund, itemCost, remainingMoney);
+    extraFundShow(fund, itemCost, remainingMoney);
     
     checkAfford(remainingMoney);
 }
@@ -101,14 +101,14 @@ function checkFundInput(){
 function calculation(){
     fund = parseFloat(fundElement.value);
     itemCost = parseFloat(itemCostElement.value);
-    TotalCost+= itemCost;
+    totalCost+= itemCost;
 
-    remainingMoney = fund - TotalCost;
+    remainingMoney = fund - totalCost;
     remainingMoneyElement.innerHTML = remainingMoney;
     
     checkAfford(remainingMoney);
 
-    ExtraFundShow(fund, TotalCost, remainingMoney);
+    extraFundShow(fund, totalCost, remainingMoney);
     
     addList(itemElement.value, itemCost);
 }
