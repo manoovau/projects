@@ -54,11 +54,9 @@ function extraFundShow(fund, totalCost, remainingMoney) {
 }
 
 function checkAfford(remainingMoney) {
-  if (remainingMoney > 0) {
-    resultElement.innerText = `You can afford to purchase the items listed below `;
-  } else {
-    resultElement.innerText = `You cannot afford to purchase the items listed below `;
-  }
+  remainingMoney > 0 ? 
+  resultElement.innerText = `You can afford to purchase the items listed below ` :
+  resultElement.innerText = `You cannot afford to purchase the items listed below `;
 }
 
 function checkExtraFund() {
@@ -82,11 +80,9 @@ function extraFundCalculation() {
 }
 
 function checkFundInput() {
-  if (fundElement.value === "" || itemCostElement.value === "") {
-    fundTextElemnt.innerHTML = `Please, fill fund and item cost fields.`;
-  } else {
-    calculation();
-  }
+  (fundElement.value === "" || itemCostElement.value === "") ?
+  fundTextElemnt.innerHTML = `Please, fill fund and item cost fields.` :
+  calculation();
 }
 
 function calculation() {
