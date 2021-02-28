@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div id="container-all">
+            <div class="container" id="container">
+                <div id="input-value-container">
+                    <p>Add the age of your furry friend:</p>
+                    <input type="number" id="input-number" placeholder="Add value" min="0">
+                </div> <!-- Close div input-value-container -->
+                <div id="unit-time-container">
+                    <label for="unit-time-input">Choose an Unit of Time: </label>
+                    <select name="duration" id="unit-time-input">
+                        <option value="year">Year</option>
+                        <option value="month">Month</option>           
+                    </select>   
+                </div> <!-- Close div unit-time-container -->
+                        
+                <div id="animal-container"></div>
+                <button id="convert-btn" class="button">Convert to human years!</button>
+                <h1 id="result">00</h1>
+            </div> <!-- Close div container -->
+            <div>
+                <button id="btn-random-dog">See Random dog pic :)</button>
+            </div> 
+        </div> <!-- Close div container-all -->
+        <div id="container-random-dog-img" class="hidden">
+            <button id="btn-close-random-dog-img">x</button>
+            <img id="random-dog-img">
+        </div>
+        
+        <script type="module" src="main.js"></script>
+    </body>
+</html>
