@@ -1,4 +1,4 @@
-import {animals} from "./js/animalData"
+import {animals} from "./js/animalData.js"
 
 const randomDogUrl = "https://random.dog/woof.json";
 const DEFAULT_VALUE = 0;
