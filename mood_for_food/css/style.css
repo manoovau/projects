@@ -1,0 +1,191 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+  background: url("https://images.unsplash.com/photo-1603462624691-069c4717257b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=668&q=80");
+  background-size: 250px;
+  background-repeat: repeat;
+  text-align: center;
+  font-weight: 100;
+}
+
+header {
+  background: rgba(255, 255, 255, 0.9);
+  margin: 0 auto 1em;
+  padding: 1em;
+}
+
+header p {
+  margin: 0.5em auto;
+  line-height: 1.35em;
+  width: 290px;
+}
+
+footer {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1em 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  color: #3a1b13;
+  font-weight: 100;
+}
+
+button {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  background: #a38560;
+  border: none;
+  padding: 0.7em 2em;
+  border-radius: 10px;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: transform 200ms ease-in-out;
+}
+
+button:hover,
+button:active {
+  transform: scale(1.1);
+}
+
+span {
+  color: #a38560;
+  font-weight: 500;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.enabled {
+  cursor: pointer;
+}
+
+.dish-img {
+  grid-area: img;
+  object-fit: cover;
+  height: 145px;
+  width: 145px;
+  border-radius: 5%;
+  margin-top: 1em;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1/4fr repeat(2, 1/3fr);
+  grid-template-areas: "winner winner" "img img" "name name";
+  grid-gap: 1%;
+  justify-content: center;
+}
+
+.dish-name {
+  grid-area: name;
+  text-transform: capitalize;
+  background: rgba(255, 255, 255, 0.9);
+  margin: 0.5em auto 4em;
+  width: 60px;
+  border-radius: 5px;
+}
+
+.winner-dish {
+  grid-area: winner;
+  border-radius: 5px;
+  color: #a38560;
+  background: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 0 auto;
+}
+
+@media (min-width: 360px) {
+  header {
+    margin-bottom: 5em;
+  }
+
+  #results {
+    margin-top: 5em;
+  }
+
+  .winner-dish {
+    margin-bottom: 1em;
+  }
+}
+
+@media (min-width: 640px) {
+  h1 {
+    margin: 1em auto;
+  }
+
+  header p {
+    margin: 0.5em auto;
+    line-height: 1.35em;
+    width: 100%;
+    font-size: 1.5rem;
+  }
+
+  header {
+    margin-bottom: 1em;
+  }
+
+  .dish-img {
+    height: 250px;
+    width: 250px;
+  }
+
+  .results {
+    margin: 10em auto 0;
+  }
+
+  .dish-name {
+    width: 70px;
+  }
+
+  button {
+    margin: 2em;
+  }
+
+  .winner-dish {
+    width: 80%;
+    font-size: 2em;
+  }
+}
+
+@media (min-width: 820px) {
+  .winner-dish {
+    width: 55%;
+  }
+
+  .dish-img {
+    height: 350px;
+    width: 350px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .winner-dish {
+    width: 40%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .winner-dish {
+    width: 30%;
+  }
+}
