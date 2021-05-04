@@ -1,6 +1,6 @@
 import { animals } from "./js/animalData.js";
 
-const randomDogUrl = "https://random.dog/woof.json";
+const RANDOM_DOG_URL = "https://random.dog/woof.json";
 const DEFAULT_VALUE = 0;
 let minRealValueArray = [];
 let maxRealValueArray = [];
@@ -319,7 +319,7 @@ function getRandoDogPic(urlRandomDog) {
     return response;
   }
 
-  const randomDogData = getInfo(randomDogUrl);
+  const randomDogData = getInfo(RANDOM_DOG_URL);
 
   randomDogData
     .then((resp) => {
