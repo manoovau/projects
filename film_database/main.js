@@ -11,6 +11,9 @@ const newShowSectionElement = document.getElementById("new-show-section");
 const newShowBtn = document.getElementById("new-show-btn");
 const h2NewShowElement = document.getElementById("h2-new-show");
 
+// title element
+const titleElement = document.getElementById("title");
+
 //reset button
 const resetBtn = document.getElementById("reset-btn");
 
@@ -20,7 +23,13 @@ const URL_SEARCH_SHOW_TEXT = "https://api.tvmaze.com/search/shows?q=";
 // Set up values
 const DEFAULT_VALUE = 0;
 const IMAGE_NEW_SHOW_LENGTH = 9;
+const IMG_ERROR =
+  "https://gamepedia.cursecdn.com/smite_gamepedia/thumb/c/ca/NNF.png/250px-NNF.png?version=55e23d00061d6779e3c798b1b9c05122";
 let newShowInputElement = "";
+let isFavorite = false;
+let isActiveInfoWind = false;
+const DEFAULT_CURRENT_ID = 100;
+let currentId = DEFAULT_CURRENT_ID;
 
 function reset(containerResults) {
   containerResults.remove();
@@ -79,14 +88,26 @@ function generateElement(
 }
 
 function imgClick(
-  index,
-  response,
-  responseName,
   average,
   genres,
   status,
-  containerResult
+  containerResult,
+  isFavorite,
+  summary,
+  id
 ) {
+  if (isActiveInfoWind) {
+    if (id === currentId) {
+      isActiveInfoWind = false;
+      currentId = DEFAULT_CURRENT_ID;
+    } else {
+      currentId = id;
+    }
+  } else {
+    isActiveInfoWind = true;
+    currentId = id;
+  }
+
   if (document.getElementById("img-click")) {
     const containerElement = document.getElementById("img-click");
     containerElement.remove();
@@ -98,7 +119,22 @@ function imgClick(
     "img-click",
     "img-click"
   );
-  imgSelectedInfo.innerHTML = `Average: ${average}.<br> Genres: ${genres}.<br> Status: ${status}`;
+
+  if (isFavorite === false) {
+    imgSelectedInfo.innerHTML = `Average: ${average}.<br> Genres: ${genres}.<br> Status: ${status}`;
+  } else {
+    imgSelectedInfo.innerHTML = `Summary: ${summary}`;
+    imgSelectedInfo.classList.add("is-favorite");
+    imgSelectedInfo.classList.remove("img-click");
+  }
+
+  if (isActiveInfoWind) {
+    imgSelectedInfo.classList.add("show");
+    imgSelectedInfo.classList.remove("hide");
+  } else {
+    imgSelectedInfo.classList.add("hide");
+    imgSelectedInfo.classList.remove("show");
+  }
 
   return imgSelectedInfo;
 }
@@ -118,21 +154,22 @@ function createImageElement(
   containerResult,
   responseName,
   condition,
-  index,
   average,
   genres,
-  status
+  status,
+  isFavorite,
+  summary,
+  id
 ) {
   const imageElement = generateElement(
     "img",
     containerResult,
     "show-img-element",
-    ""
+    id
   );
 
   if (condition === DEFAULT_VALUE) {
-    imageElement.src =
-      "https://gamepedia.cursecdn.com/smite_gamepedia/thumb/c/ca/NNF.png/250px-NNF.png?version=55e23d00061d6779e3c798b1b9c05122";
+    imageElement.src = IMG_ERROR;
     imageElement.alt = `${responseName} Poster not found`;
   } else {
     imageElement.src = response;
@@ -140,15 +177,7 @@ function createImageElement(
   }
 
   imageElement.addEventListener("click", (e) => {
-    imgClick(
-      index,
-      response,
-      responseName,
-      average,
-      genres,
-      status,
-      containerResult
-    );
+    imgClick(average, genres, status, containerResult, isFavorite, summary, id);
   });
 }
 
@@ -200,11 +229,22 @@ function createFavoriteInfoElements(response) {
     "0",
     response[0].show.rating.average,
     response[0].show.genres.join(", "),
-    response[0].show.status
+    response[0].show.status,
+    isFavorite,
+    response[0].show.summary,
+    0
   );
 
   resetBtn.classList.add("show");
   resetBtn.addEventListener(
+    "click",
+    () => {
+      reset(containerResult);
+    },
+    false
+  );
+
+  titleElement.addEventListener(
     "click",
     () => {
       reset(containerResult);
@@ -232,10 +272,12 @@ function createArrayNewShow(response, i, containerResults) {
     containerResult,
     response[i].show.name,
     response[i].show.image,
-    i,
     response[i].show.rating.average,
     response[i].show.genres.join(", "),
-    response[i].show.status
+    response[i].show.status,
+    isFavorite,
+    "",
+    i
   );
 }
 
@@ -246,7 +288,7 @@ function createNewShowElements(response) {
 
   const containerResults = generateElement(
     "div",
-    h2NewShowElement,
+    newShowSectionElement,
     "",
     "container-results"
   );
@@ -265,6 +307,14 @@ function createNewShowElements(response) {
 
   resetBtn.classList.add("show");
   resetBtn.addEventListener(
+    "click",
+    () => {
+      reset(containerResults);
+    },
+    false
+  );
+
+  titleElement.addEventListener(
     "click",
     () => {
       reset(containerResults);
@@ -292,6 +342,7 @@ const getInfoSource = async () => {
 };
 
 function checkInputFavoriteShow() {
+  isFavorite = true;
   if (favoriteShowInputElement.value === "") {
     h2FavoriteShowElement.innerHTML =
       "Please, fill info about your favorite Show";
@@ -304,6 +355,7 @@ function checkInputFavoriteShow() {
 }
 
 function checkInputNewShow() {
+  isFavorite = false;
   newShowInputElement = generateRandomLetter();
 
   getInfoSource();

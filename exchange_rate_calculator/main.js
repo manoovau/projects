@@ -1,21 +1,57 @@
-
 const amountElement = document.getElementById("original-currency-amount");
 const exchangeButton = document.getElementById("exchange");
 const exchangeRateDisplayElement = document.getElementById("exchange-rate");
-const originalCurrencyElement = document.getElementById("original-currency-unit");
+const originalCurrencyElement = document.getElementById(
+  "original-currency-unit"
+);
 const newCurrencyElement = document.getElementById("new-currency-unit");
 const outputTextElement = document.getElementById("output-text");
 const dateElement = document.getElementById("date");
 
-const currencys = ["USD", "CAD","HKD","ISK","PHP","DKK","HUF","CZK","GBP","RON","SEK","IDR","INR","BRL","RUB","HRK","JPY","THB","CHF","EUR","MYR","BGN","TRY","CNY","NOK","NZD","ZAR","USD","MXN","SGD","AUD","ILS","KRW","PLN"];
+const CURRENCYS = [
+  "USD",
+  "CAD",
+  "HKD",
+  "ISK",
+  "PHP",
+  "DKK",
+  "HUF",
+  "CZK",
+  "GBP",
+  "RON",
+  "SEK",
+  "IDR",
+  "INR",
+  "BRL",
+  "RUB",
+  "HRK",
+  "JPY",
+  "THB",
+  "CHF",
+  "EUR",
+  "MYR",
+  "BGN",
+  "TRY",
+  "CNY",
+  "NOK",
+  "NZD",
+  "ZAR",
+  "USD",
+  "MXN",
+  "SGD",
+  "AUD",
+  "ILS",
+  "KRW",
+  "PLN",
+];
 
 function formatAsCurrency(amount, currency) {
   return amount.toLocaleString("en", { style: "currency", currency });
 }
 
 function addCurrencyOptions(selectElement) {
-  for (let i = 0; i < currencys.length; i++) {
-    const currency = currencys[i];
+  for (let i = 0; i < CURRENCYS.length; i++) {
+    const currency = CURRENCYS[i];
     const option = document.createElement("option");
     option.textContent = currency;
     option.value = currency;
@@ -31,10 +67,10 @@ const EXCHANGE_RATES_API = "https://api.exchangeratesapi.io/latest";
 
 function getAmount() {
   const amount = parseInt(amountElement.value, 10);
-  if(Number.isNaN(amount)){
-	return DEFAULT_AMOUNT_VALUE;  
-  }else{
-	return amount;
+  if (Number.isNaN(amount)) {
+    return DEFAULT_AMOUNT_VALUE;
+  } else {
+    return amount;
   }
 }
 
@@ -56,13 +92,16 @@ exchangeButton.addEventListener("click", () => {
 
       const exchangeRateFormatted = exchangeRate.toFixed(2);
       const amountFormatted = formatAsCurrency(amount, originalCurrency);
-      const exchangeAmountFormatted = formatAsCurrency(exchangeAmount, newCurrency);
+      const exchangeAmountFormatted = formatAsCurrency(
+        exchangeAmount,
+        newCurrency
+      );
 
       // Update the result in the UI
       exchangeRateDisplayElement.innerText = exchangeRateFormatted;
       outputTextElement.innerText = `The equivalent for ${amountFormatted} are ${exchangeAmountFormatted}`;
     })
-    .catch(err => {
-        outputTextElement.innerText = `Sorry, we have technical difficulties`;
+    .catch((err) => {
+      outputTextElement.innerText = `Sorry, we have technical difficulties`;
     });
 });

@@ -84,6 +84,10 @@ button:active {
   font-size: 0.9rem;
 }
 
+#title {
+  cursor: pointer;
+}
+
 #favorite-show-btn {
   margin-bottom: 6em;
 }
@@ -145,19 +149,29 @@ button:active {
   text-align: center;
 }
 
+#img-click {
+  background: black;
+  opacity: 0.8;
+  border-radius: 5px;
+  margin: 1em auto;
+  padding: 1em;
+}
+
 .img-click {
   font-size: 1rem;
   font-weight: 400;
   text-align: left;
-  margin: 0 0.25em;
-  padding: 1em;
   width: 60%;
   position: relative;
   top: -12em;
   left: 1em;
-  background: black;
-  opacity: 0.8;
-  border-radius: 5px;
+}
+
+.is-favorite {
+  font-size: 1rem;
+  width: 50%;
+  text-align: left;
+  font-weight: 400;
 }
 
 .hide {
