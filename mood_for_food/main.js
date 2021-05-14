@@ -5,6 +5,7 @@ const btnReset = document.getElementById("btn-reset");
 const defaultDiv = document.getElementById("default-div");
 
 // Default values
+const URL_API = "https://foodish-api.herokuapp.com/api/";
 const REMOVE_IMAGE_SRC_START = 41;
 let isWinner = false;
 
@@ -88,10 +89,10 @@ function getChoosenDish(dishName1, dishName2, containerElement) {
 }
 
 async function getDish() {
-  const dataRes1 = await fetch("https://foodish-api.herokuapp.com/api/");
+  const dataRes1 = await fetch(URL_API);
   const responseRes1 = await dataRes1.json();
 
-  const dataRes2 = await fetch("https://foodish-api.herokuapp.com/api/");
+  const dataRes2 = await fetch(URL_API);
   const responseRes2 = await dataRes2.json();
 
   if (document.getElementById("results")) {

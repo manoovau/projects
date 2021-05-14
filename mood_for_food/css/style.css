@@ -6,6 +6,7 @@
 body {
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
+  font-size: 1rem;
   background: url("https://images.unsplash.com/photo-1603462624691-069c4717257b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=668&q=80");
   background-size: 250px;
   background-repeat: repeat;
@@ -53,7 +54,7 @@ button {
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   transition: transform 200ms ease-in-out;
 }
 
@@ -109,7 +110,7 @@ span {
   color: #a38560;
   background: rgba(255, 255, 255, 0.9);
   font-weight: 500;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   text-align: center;
   margin: 0 auto;
 }
@@ -163,11 +164,19 @@ span {
 
   .winner-dish {
     width: 80%;
-    font-size: 2em;
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 820px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
   .winner-dish {
     width: 55%;
   }
