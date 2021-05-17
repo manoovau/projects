@@ -63,7 +63,7 @@ addCurrencyOptions(originalCurrencyElement);
 addCurrencyOptions(newCurrencyElement);
 
 const DEFAULT_AMOUNT_VALUE = 1;
-const EXCHANGE_RATES_API = "https://api.exchangeratesapi.io/latest";
+const EXCHANGE_RATES_API = "https://api.frankfurter.app/latest";
 
 function getAmount() {
   const amount = parseInt(amountElement.value, 10);
