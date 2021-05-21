@@ -58,7 +58,7 @@ function displayDish(response, containerElement) {
   const textDishElement = generateElement(
     "p",
     containerResElement,
-    "dish-name",
+    "",
     "dish-name"
   );
   textDishElement.innerText = getDishName(response);
