@@ -15,29 +15,27 @@
   <body>
     <div>
       <h1>Budget Calculator</h1>
-      <h2 id="fund-text">How much money is in the fund?</h2>
-      <input id="fund" type="number" step="any" placeholder="fund" />
+      <h2 id="fund-text">How much money is in my savings?</h2>
+      <input id="fund" type="number" step="any" placeholder="Savings $ .." />
       <div id="current-data" class="hide result-calculation">
         <p id="total-cost"></p>
         <p id="remaining-money"></p>
       </div>
       <h2>How much does the item cost?</h2>
-      <input id="item" type="text" placeholder="Item name" />
-      <input id="item-cost" type="number" step="0.01" placeholder="Item cost" />
+      <input id="item" type="text" placeholder="Item .." />
+      <input id="item-cost" type="number" step="0.01" placeholder="Cost $ .." />
       <br />
       <button id="btn-calculation" class="btn">Give it to me straight!</button>
       <div id="extra-fund" class="hide">
-        <p id="result"></p>
-        <p id="extra-fund-text">Wait! I want to add more money to the fund.</p>
+        <p id="extra-fund-text">Add more money to my savings:</p>
         <input
           id="extra-fund-amount"
           type="number"
           step="any"
-          placeholder="Extra fund"
+          placeholder="Add to savings $ .."
         />
-        <button id="btn-extra-fund" class="btn">Add to the fund!</button>
-        <h3>See below your items list</h3>
-        <p id="items-list"></p>
+        <button id="btn-extra-fund" class="btn">Add to savings</button>
+        <p id="result"></p>
       </div>
     </div>
     <script src="main.js"></script>

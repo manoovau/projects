@@ -5,49 +5,53 @@
 
 body {
   margin: 0 auto;
-  font-size: 3rem;
+  font-size: 1.5rem;
   text-align: center;
   background: url(../img/image.webp) #cfcccc repeat center fixed;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #536271;
   font-weight: 500;
   min-width: 100px;
 }
 
 input {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #536271;
   font-weight: 700;
 }
 
 h1 {
   margin: 2em auto 1em;
-  font-size: 5rem;
+  font-size: 2.25rem;
   font-weight: 700;
+  color: #353f49;
 }
 
 h2 {
   margin: 1.5em auto 0.5em;
-  font-size: 3rem;
+  font-size: 1.75rem;
   font-weight: 500;
 }
 
 h3 {
   margin: 1.5em auto 1em;
-  font-size: 2.75rem;
+  font-size: 1.5rem;
   font-weight: 500;
+}
+
+button {
+  font-size: 0.85rem;
 }
 
 input {
   padding: 0.3em 1em;
-  font-size: 2.75rem;
+  font-size: 1rem;
 }
 
-input,
-button {
+button,
+input {
   margin: 1em 1.5em;
-  border-radius: 20px;
-  font-size: 2rem;
+  border-radius: 5px;
 }
 
 button {
@@ -63,7 +67,6 @@ button {
 
 button:hover,
 button:active {
-  font-size: 2.1rem;
   color: #fbf3e2;
 }
 
@@ -83,7 +86,8 @@ button:active {
 
 #fund,
 #item-cost,
-#extra-fund-amount {
+#extra-fund-amount,
+input {
   width: 200px;
 }
 
@@ -104,74 +108,41 @@ button:active {
   text-align: center;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 640px) {
   body {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   h1 {
-    font-size: 4rem;
-  }
-
-  h2 {
     font-size: 2.5rem;
   }
 
-  input,
+  h2 {
+    font-size: 2rem;
+  }
+
   button {
-    margin: 1em 1.5em;
-    border-radius: 20px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    padding: 0.5em 2em;
   }
 
-  button:hover,
-  button:active {
-    font-size: 1.6rem;
-  }
-
-  #fund-text {
-    font-size: 2rem;
-  }
-
-  #current-data {
-    margin: 0.5em auto;
-  }
-}
-
-@media (min-width: 1400px) {
-  body {
-    font-size: 1.5rem;
-    margin-bottom: 2em;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-    margin: 1em;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    margin: 1.25em auto 0.5em;
-  }
-
-  h3 {
+  input {
     font-size: 1.25rem;
   }
 
   input,
   button {
     margin: 1em 1.5em;
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 5px;
   }
 
   button:hover,
   button:active {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   #fund-text {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   #current-data {
@@ -179,35 +150,44 @@ button:active {
   }
 }
 
-@media (min-width: 1700px) {
+@media (min-width: 1280px) {
   body {
     font-size: 2rem;
   }
 
   h1 {
-    font-size: 3rem;
-    margin: 1.5em auto 1em;
+    font-size: 2.75rem;
   }
 
   h2 {
-    font-size: 2rem;
-  }
-
-  h3 {
     font-size: 2.25rem;
   }
 
+  button {
+    font-size: 1.45rem;
+    padding: 0.5em 2em;
+  }
+
+  input {
+    font-size: 1.5rem;
+  }
+
   input,
   button {
-    font-size: 1.25rem;
+    margin: 1em 1.5em;
+    border-radius: 5px;
   }
 
   button:hover,
   button:active {
-    font-size: 1.35rem;
+    font-size: 1.45rem;
   }
 
   #fund-text {
-    font-size: 2rem;
+    font-size: 2.25rem;
+  }
+
+  #current-data {
+    margin: 0.5em auto;
   }
 }
