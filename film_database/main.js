@@ -23,22 +23,21 @@ const URL_SEARCH_SHOW_TEXT = "https://api.tvmaze.com/search/shows?q=";
 // Set up values
 const DEFAULT_VALUE = 0;
 const IMAGE_NEW_SHOW_LENGTH = 9;
-const IMG_ERROR =
-  "https://gamepedia.cursecdn.com/smite_gamepedia/thumb/c/ca/NNF.png/250px-NNF.png?version=55e23d00061d6779e3c798b1b9c05122";
+const IMG_ERROR = "./img/404.png";
 let newShowInputElement = "";
 let isFavorite = false;
-let isActiveInfoWind = false;
-const DEFAULT_CURRENT_ID = 100;
-let currentId = DEFAULT_CURRENT_ID;
+// let isActiveInfoWind = false;
+//const DEFAULT_CURRENT_ID = 100;
+//let currentId = DEFAULT_CURRENT_ID;
 
-function reset(containerResults) {
-  containerResults.remove();
+function reset(containerAllResults) {
+  containerAllResults.remove();
 
   favoriteShowInputElement.value = "";
   newShowInputElement = "";
 
   h2NewShowElement.innerHTML = "I want to discover more shows.";
-  h2FavoriteShowElement.innerHTML = "Get information about your favorite Show";
+  h2FavoriteShowElement.innerHTML = "Get information about your favorite Show.";
 
   favoriteShowBtn.classList.add("show");
   favoriteShowInputElement.classList.add("show");
@@ -87,98 +86,63 @@ function generateElement(
   return elemName;
 }
 
-function imgClick(
-  average,
-  genres,
-  status,
-  containerResult,
-  isFavorite,
-  summary,
-  id
-) {
-  if (isActiveInfoWind) {
-    if (id === currentId) {
-      isActiveInfoWind = false;
-      currentId = DEFAULT_CURRENT_ID;
-    } else {
-      currentId = id;
-    }
-  } else {
-    isActiveInfoWind = true;
-    currentId = id;
-  }
-
-  if (document.getElementById("img-click")) {
-    const containerElement = document.getElementById("img-click");
-    containerElement.remove();
-  }
-
-  const imgSelectedInfo = generateElement(
+function addBoxInfo(response, containerResult, isFavorite) {
+  const infoContainer = generateElement(
     "div",
     containerResult,
-    "img-click",
-    "img-click"
+    "box-info",
+    "info-container"
   );
 
   if (isFavorite === false) {
-    imgSelectedInfo.innerHTML = `Average: ${average}.<br> Genres: ${genres}.<br> Status: ${status}`;
+    infoContainer.innerHTML = `Average: ${
+      response.show.rating.average
+    }.<br> Genres: ${response.show.genres.join(", ")}.<br> Status: ${
+      response.show.status
+    }`;
   } else {
-    imgSelectedInfo.innerHTML = `Summary: ${summary}`;
-    imgSelectedInfo.classList.add("is-favorite");
-    imgSelectedInfo.classList.remove("img-click");
+    infoContainer.innerHTML = `Summary: ${response.show.summary}`;
+    infoContainer.classList.add("is-favorite");
+    infoContainer.classList.remove("box-info");
   }
-
-  if (isActiveInfoWind) {
-    imgSelectedInfo.classList.add("show");
-    imgSelectedInfo.classList.remove("hide");
-  } else {
-    imgSelectedInfo.classList.add("hide");
-    imgSelectedInfo.classList.remove("show");
-  }
-
-  return imgSelectedInfo;
+  return infoContainer;
 }
 
-function createResultElement(response, containerResult, string) {
+function createParagElement(text, containerResult, string) {
   const Element = generateElement(
     "p",
     containerResult,
     "show-info-element",
     ""
   );
-  Element.innerHTML = `${string} ${response}`;
+  Element.innerHTML = `${string} ${text}`;
 }
 
-function createImageElement(
-  response,
-  containerResult,
-  responseName,
-  condition,
-  average,
-  genres,
-  status,
-  isFavorite,
-  summary,
-  id
-) {
+function createResultContainer(response, containerResult, isFavorite, id) {
+  const overlayContainerElement = generateElement(
+    "div",
+    containerResult,
+    "",
+    "img-overlay"
+  );
+
   const imageElement = generateElement(
     "img",
     containerResult,
     "show-img-element",
     id
   );
-
-  if (condition === DEFAULT_VALUE) {
+  // update "condition === DEFAULT_VALUE" to "response[0].show.image.medium === null"
+  if (response.show.image.medium === undefined) {
     imageElement.src = IMG_ERROR;
-    imageElement.alt = `${responseName} Poster not found`;
+    imageElement.alt = `${response.show.name} Poster not found`;
+    console.log("Not found");
   } else {
-    imageElement.src = response;
-    imageElement.alt = `${responseName} Poster`;
+    imageElement.src = `${response.show.image.medium}`;
+    imageElement.alt = `${response.show.name} Poster`;
   }
 
-  imageElement.addEventListener("click", (e) => {
-    imgClick(average, genres, status, containerResult, isFavorite, summary, id);
-  });
+  addBoxInfo(response, overlayContainerElement, isFavorite);
 }
 
 function createFavoriteInfoElements(response) {
@@ -193,21 +157,21 @@ function createFavoriteInfoElements(response) {
     "container-result-fav"
   );
 
-  createResultElement(response[0].show.name, containerResult, "Show: ");
+  createParagElement(response[0].show.name, containerResult, "");
 
-  createResultElement(
+  createParagElement(
     response[0].show.rating.average,
     containerResult,
     "Rating average: "
   );
 
-  createResultElement(
+  createParagElement(
     response[0].show.genres.join(", "),
     containerResult,
     "Genre: "
   );
 
-  createResultElement(response[0].show.status, containerResult, "Status: ");
+  createParagElement(response[0].show.status, containerResult, "Status: ");
 
   const officialSiteElement = generateElement(
     "a",
@@ -222,14 +186,9 @@ function createFavoriteInfoElements(response) {
     response[0].show.image = DEFAULT_VALUE;
   }
 
-  createImageElement(
-    response[0].show.image.medium,
+  createResultContainer(
+    response[0],
     containerResult,
-    response[0].show.name,
-    "0",
-    response[0].show.rating.average,
-    response[0].show.genres.join(", "),
-    response[0].show.status,
     isFavorite,
     response[0].show.summary,
     0
@@ -253,40 +212,36 @@ function createFavoriteInfoElements(response) {
   );
 }
 
-function createArrayNewShow(response, i, containerResults) {
+function createArrayNewShow(response, i, containerAllResults) {
   if (response[i].show.image === null) {
     response[i].show.image = DEFAULT_VALUE;
   }
 
   const containerResult = generateElement(
     "div",
-    containerResults,
+    containerAllResults,
     "container-result-new",
     ""
   );
 
-  createResultElement(response[i].show.name, containerResult, "Show: ");
-
-  createImageElement(
-    response[i].show.image.medium,
+  const containerResultImgInfo = generateElement(
+    "div",
     containerResult,
-    response[i].show.name,
-    response[i].show.image,
-    response[i].show.rating.average,
-    response[i].show.genres.join(", "),
-    response[i].show.status,
-    isFavorite,
     "",
-    i
+    "container-overlay"
   );
+
+  createResultContainer(response[i], containerResultImgInfo, isFavorite, "", i);
+
+  createParagElement(response[i].show.name, containerResult, "Show: ");
 }
 
 function createNewShowElements(response) {
   resultNewDisplay();
 
-  h2NewShowElement.innerHTML = `Enjoy!!! Click on the Image to display info`;
+  h2NewShowElement.innerHTML = `Hope you like our suggestions! Hover over the image to display info`;
 
-  const containerResults = generateElement(
+  const containerAllResults = generateElement(
     "div",
     newShowSectionElement,
     "",
@@ -297,11 +252,11 @@ function createNewShowElements(response) {
 
   if (response.length < IMAGE_NEW_SHOW_LENGTH) {
     for (i = 0; i < response.length; i++) {
-      createArrayNewShow(response, i, containerResults);
+      createArrayNewShow(response, i, containerAllResults);
     }
   } else {
     for (i = 0; i < IMAGE_NEW_SHOW_LENGTH; i++) {
-      createArrayNewShow(response, i, containerResults);
+      createArrayNewShow(response, i, containerAllResults);
     }
   }
 
@@ -309,7 +264,7 @@ function createNewShowElements(response) {
   resetBtn.addEventListener(
     "click",
     () => {
-      reset(containerResults);
+      reset(containerAllResults);
     },
     false
   );
@@ -317,7 +272,7 @@ function createNewShowElements(response) {
   titleElement.addEventListener(
     "click",
     () => {
-      reset(containerResults);
+      reset(containerAllResults);
     },
     false
   );
