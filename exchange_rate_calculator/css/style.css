@@ -1,81 +1,161 @@
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-html, body {
-    margin: 0 auto;
-    padding: 0;
-	color: #855E42;
-	font-family: 'Roboto', sans-serif;
-	font-weight: 700;
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+  color: #855e42;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
 }
 
 body {
-	text-align: center;
-		background: url(../img/image.webp) #C2D8B9 repeat center fixed;
+  text-align: center;
+  background: url(../img/image.webp) #c2d8b9 repeat center fixed;
 }
 
-input, select {
-	width: 70px;
-	height: 25px;
-	font-size: 1rem;
-	color: #855E42;
-	font-weight: 700;
-	padding: 0 .25em;
+input,
+select {
+  width: 70px;
+  height: 25px;
+  font-size: 1rem;
+  color: #855e42;
+  font-weight: 700;
+  padding: 0 0.25em;
 }
 
 input {
-	margin: 2em 1em;
+  margin: 2em 1em;
 }
 
 select {
-	margin: 0 1.5em;
+  margin: 0 1.5em;
 }
-
 
 button {
-	width: 300px;
-	height: 40px;
-	font-size: 0.8rem;
-	font-weight: 900;
-	cursor: pointer;
-	background: #335145;
-	border: none;
-	color: #FFF;
-	text-transform: uppercase;
+  padding: 0.7em 2em;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+  background: #335145;
+  border: none;
+  color: #fff;
+  text-transform: uppercase;
+  transition: transform 200ms ease-in-out;
 }
 
-button:hover, button:active {
-	color: #C2D8B9;
-	font-size: .85rem;
+button:hover,
+button:active {
+  color: #c2d8b9;
+  transform: scale(1.1);
 }
 
-input, select, button {
-	border-radius: 5px;
+input,
+select,
+button {
+  border-radius: 5px;
 }
 
 h1 {
-	margin: 2em auto 1.5em;
-	color: #335145;
+  font-size: 2em;
+  margin: 2em auto 1.5em;
+  color: #335145;
 }
 
 p {
-	font-size: 1.25rem;
-	margin: 1.5em auto;
+  font-size: 1.25rem;
+  margin: 1.5em auto;
 }
 
-#output-text, #date {
-	color: #033F63;
-	margin: 2rem auto;
+#output-text,
+#date {
+  color: #033f63;
+  margin: 2em auto;
+  width: 250px;
 }
 
 #date {
-	font-size: 1rem;
-	letter-spacing: 1px;
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
 
 #original-currency-amount {
-	width: 125px;
+  width: 125px;
 }
 
+@media (min-width: 640px) {
+  h1 {
+    margin: 2.5em auto 1em;
+    font-size: 2.25rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  input,
+  select {
+    font-size: 1rem;
+    height: auto;
+  }
+
+  select {
+    width: auto;
+  }
+
+  button,
+  #date {
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+
+  #output-text,
+  #date {
+    width: 400px;
+  }
+}
+
+@media (min-width: 1280px) {
+  h1 {
+    margin: 3.5em auto 0em;
+    font-size: 2.5rem;
+  }
+
+  input {
+    margin: 1.5em auto;
+  }
+
+  p {
+    font-size: 1.5rem;
+    padding: 0;
+    margin-top: 1em;
+  }
+
+  input,
+  select {
+    font-size: 1.25rem;
+  }
+
+  button {
+    margin: 1em 0;
+  }
+
+  button,
+  #date {
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+
+  #output-text,
+  #date {
+    width: auto;
+    margin: 1em auto;
+  }
+
+  #output-text {
+    line-height: 1.5;
+  }
+}
