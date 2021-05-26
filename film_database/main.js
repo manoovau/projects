@@ -2,7 +2,7 @@
 const favoriteShowSectionElement = document.getElementById(
   "favorite-show-section"
 );
-const favoriteShowInputElement = document.getElementById("favorite-show");
+const favoriteShowInputElement = document.getElementById("favorite-show-input");
 const favoriteShowBtn = document.getElementById("favorite-show-btn");
 const h2FavoriteShowElement = document.getElementById("h2-favorite-show");
 
@@ -36,7 +36,8 @@ function reset(containerAllResults) {
   favoriteShowInputElement.value = "";
   newShowInputElement = "";
 
-  h2NewShowElement.innerHTML = "I want to discover more shows.";
+  h2NewShowElement.innerHTML =
+    "I am bored, please give me new Shows to waste my time :) ";
   h2FavoriteShowElement.innerHTML = "Get information about your favorite Show.";
 
   favoriteShowBtn.classList.add("show");
@@ -239,7 +240,7 @@ function createArrayNewShow(response, i, containerAllResults) {
 function createNewShowElements(response) {
   resultNewDisplay();
 
-  h2NewShowElement.innerHTML = `Hope you like our suggestions! Hover over the image to display info`;
+  h2NewShowElement.innerHTML = `Hope you like our suggestions! Hover over the image to display more info`;
 
   const containerAllResults = generateElement(
     "div",
