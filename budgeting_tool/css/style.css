@@ -5,17 +5,16 @@
 
 body {
   margin: 0 auto;
-  font-size: 1.5rem;
   text-align: center;
   background: url(../img/image.webp) #cfcccc repeat center fixed;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #536271;
   font-weight: 500;
-  min-width: 100px;
+  margin-bottom: 3em;
 }
 
 input {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #536271;
   font-weight: 700;
 }
