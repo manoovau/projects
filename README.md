@@ -1,4 +1,5 @@
-# Vanilla JavaScript projects  <img src="http://3con14.biz/code/_data/js/intro/js-logo.png" width=2.5% height=2.5%>
+ <h1>Vanilla JavaScript projects <img src="http://3con14.biz/code/_data/js/intro/js-logo.png" width=3.5% height=3.5%> </h1>  
+
 
 Projects built with HTML5, CSS & JavaScript without any external libraries or frameworks. <br />
  <br />
