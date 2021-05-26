@@ -1,38 +1,38 @@
 :root {
   --primary-color: #fff;
-  --bg-color: rgba(110, 144, 117, 0.6);
+  --secondary-color: rgba(111, 73, 55, 0.4);
+  --bg-color: rgba(163, 163, 163, 0.6);
+}
+
+html {
+  min-height: 100%;
+  background-image: url("https://images.unsplash.com/photo-1612207768180-13415b8cd741?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=668&q=80");
+  background-color: #335145;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 body {
-  background: url("https://images.unsplash.com/photo-1612207768180-13415b8cd741?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=668&q=80");
   display: flex;
+  font-size: 1rem;
   flex-direction: column;
   text-align: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  overflow-x: hidden;
   align-content: center;
   width: 100%;
   font-family: "Roboto", sans-serif;
 }
 
 p,
-h1,
 label,
 input,
 select {
   background-color: var(--bg-color);
   color: var(--primary-color);
-  font-size: 1.2rem;
+  border: solid var(--secondary-color);
+  border-radius: 5px;
   margin: 0;
-  border: solid rgba(111, 73, 55, 0.4);
-}
-
-label,
-select,
-p {
-  margin: 0.75em 0;
-  padding: 2px 1.25em;
 }
 
 select,
@@ -45,10 +45,23 @@ select option {
   text-transform: capitalize;
 }
 
-button {
-  background-color: rgba(110, 144, 117, 1);
+h1 {
   color: var(--primary-color);
-  border-radius: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  background-color: var(--bg-color);
+  border-radius: 5px;
+  padding: 0.5em;
+  margin: 0.5em auto 0;
+  cursor: pointer;
+}
+
+button {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  border-radius: 15px;
   align-self: center;
   font-weight: 700;
   border: none;
@@ -56,7 +69,7 @@ button {
   letter-spacing: 1px;
   cursor: pointer;
   padding: 0.7em 1.5em;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   transition: transform 200ms ease-in-out;
   margin: 1em 0;
 }
@@ -67,90 +80,134 @@ button:active {
 }
 
 input:checked {
-  border: 7px solid #161616;
+  border: 9px solid #161616;
 }
 
-#input-number,
-#unit-time-input {
-  width: 8em;
-  margin: auto 0;
-  appearance: textfield;
+option {
+  font-size: 0.75rem;
+}
+
+select {
+  width: 200px;
+  padding: 0.25em 0.5em;
 }
 
 #size-container {
-  margin: 8em auto 2em;
+  margin: 0.5em auto 2em;
 }
 
-#input-value-container {
-  margin-top: 1em;
+#input-number {
+  width: 80px;
+  appearance: textfield;
+  text-align: left;
+  padding: 0.35em 0.5em;
+}
+
+#unit-time-container {
+  margin-left: 1em;
+}
+
+#unit-time-input {
+  width: 150px;
+  appearance: textfield;
+  text-align: left;
+  padding: 0.25em;
 }
 
 #input-value-container,
 #unit-time-container {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #result {
+  background-color: var(--bg-color);
   color: var(--primary-color);
-  font-size: 2.5rem;
+  border: solid var(--bg-color);
+  border-radius: 5px;
+  padding: 0.25em;
+  font-size: 1.5rem;
   align-self: center;
-  padding: 0 0.5em;
   font-weight: 400;
 }
 
 #size-desc {
   font-size: 1rem;
-  height: 2.5em;
-  width: 26em;
+  margin: 2em auto;
+  padding: 0.5em;
+  width: 230px;
+}
+
+#container-small,
+#container-medium,
+#container-big {
+  margin: 0.5em auto;
+}
+
+.size-label {
+  margin: 0 0.5em 0 1.25em;
 }
 
 #container-random-dog-img {
   position: absolute;
-  width: 85vw;
-  height: 80vh;
-  margin: 2vh 7.5vw 0;
+  width: 100%;
+  height: 505px;
+  top: 75px;
+  margin: 0;
   overflow: hidden;
 }
 
 #container-all {
-  width: 100%;
-  padding-bottom: 2em;
+  flex-wrap: wrap;
 }
 
 #random-dog-img {
-  border-radius: 20px;
+  border-radius: 5px;
   object-fit: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 100%;
-  height: 95%;
+  height: 565px;
   background-size: cover;
   z-index: 2;
+}
+
+#btn-random-dog {
+  margin: 2.5em 0;
 }
 
 #btn-close-random-dog-img {
   position: absolute;
   z-index: 5;
-  right: 5vh;
+  right: 1.5vh;
   font-size: 1em;
   padding: 0.5em 0.75em;
   border-radius: 50%;
   background: rgb(255, 255, 255, 0.6);
 }
 
+#animal-container {
+  padding-top: 1em;
+}
+
 .container {
-  margin: 2vh auto;
-  width: 70vw;
-  height: 70vh;
-  border-radius: 20px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  padding: 1.5em;
+  padding: 1em;
+  margin-top: 1em;
+  max-width: 950px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   justify-content: space-around;
+}
+
+.age-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .animal-option {
@@ -158,15 +215,20 @@ input:checked {
   color: var(--primary-color);
 }
 
+.description {
+  color: var(--primary-color);
+  font-weight: 300;
+}
+
 .size-option {
   appearance: none;
-  font-size: 1.1rem;
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border: 3px solid #161616;
   transition: 0.2s all linear;
   margin-right: 0.5em;
+  margin-bottom: -7px;
 }
 
 .hidden {
@@ -177,43 +239,60 @@ input:checked {
   visibility: visible;
 }
 
-@media (max-width: 650px) {
+@media (min-width: 640px) {
   body {
-    margin: 1em;
-    background: pink;
+    font-size: 1.25rem;
   }
 
-  .container {
-    margin: 0.5vh auto;
-    width: 90vw;
-    height: 85vh;
-    padding: 0;
+  h1 {
+    font-size: 2rem;
+    margin: 2em auto;
+    max-width: 990px;
+  }
+
+  button {
+    font-size: 1.25rem;
+  }
+
+  #container-all {
+    padding: 0 2em;
+  }
+
+  #unit-time-input {
+    width: 175px;
+  }
+
+  #size-desc {
+    width: 420px;
   }
 
   #container-random-dog-img {
-    margin: 0.5vh 5vw 0vh 5vw;
-    width: 90vw;
-    height: 85vh;
+    max-width: 990px;
+    height: 675px;
+    top: 500px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 
   #random-dog-img {
-    height: 100%;
+    border-radius: 20px;
+    height: 675px;
+  }
+
+  .container {
+    border-radius: 20px;
+    margin: 2em auto;
+    min-height: 600px;
+  }
+
+  .description {
+    font-size: 1.5rem;
   }
 }
 
-@media (max-width: 520px) {
-  body {
-    margin: 1em;
-    background: red;
-  }
-
-  #container-random-dog-img {
-    margin: 0.5vh 6vw 0vh 3vw;
-  }
-
-  #input-value-container,
-  #unit-time-container {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+@media (min-width: 1280px) {
 }

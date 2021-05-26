@@ -6,7 +6,11 @@ let minRealValueArray = [];
 let maxRealValueArray = [];
 let realValueMatch = [];
 let error = "";
-let urlRandomDog = "";
+let realValue;
+let sizeContainerElementStyle = {
+  height: "0px",
+  overflow: "hidden",
+};
 
 const containerAll = document.getElementById("container-all");
 const unitTimeInputElement = document.getElementById("unit-time-input");
@@ -23,6 +27,8 @@ const randomDogImg = document.getElementById("random-dog-img");
 const closeRandomDogImgBtn = document.getElementById(
   "btn-close-random-dog-img"
 );
+const headerElement = document.getElementById("header");
+
 let inputNumber = Number(inputNumberElement.value);
 
 function createElem(type, parent, idElement, classElement) {
@@ -54,8 +60,7 @@ function createInputRadioElement(
   parent,
   idElement,
   classElement,
-  selectOptionValue,
-  selectOptionText
+  selectOptionValue
 ) {
   const element = createElem(type, parent, idElement, classElement);
   element.value = selectOptionValue;
@@ -63,11 +68,32 @@ function createInputRadioElement(
   element.setAttribute("name", `${inputName}`);
 }
 
+function setDisableBtn() {
+  convertBtn.disabled = true;
+  convertBtn.style.cursor = "not-allowed";
+  convertBtn.style.background = "grey";
+}
+
+function isDog() {
+  selectAnimalElement.value === "dog"
+    ? (sizeContainerElement.style.visibility = "visible")
+    : (sizeContainerElement.style.visibility = "hidden");
+}
+
+function reset() {
+  unitTimeInputElement.value = "";
+  inputNumberElement.value = "";
+  selectAnimalElement.value = "";
+  resultElement.innerHTML = "00";
+  containerElement.style.backgroundImage = "";
+  isDog();
+  document.querySelector('input[name="size"]:checked').checked = false;
+  setDisableBtn();
+}
+
 const selectAnimalElement = createElem(
   "select",
   animalContainerElement,
-  "",
-  "",
   "",
   ""
 );
@@ -75,10 +101,10 @@ const selectAnimalElement = createElem(
 createOptionElement(
   "option",
   selectAnimalElement,
-  "",
+  "select-animal-list",
   "animal-options",
   "",
-  `<--Select an animal--->`
+  `Select animal`
 );
 
 const animalsList = Object.keys(animals);
@@ -100,27 +126,32 @@ const sizeContainerElement = createElem(
   "div",
   animalContainerElement,
   "size-container",
-  "",
-  "",
   ""
 );
 sizeContainerElement.style.visibility = "hidden";
 
-const sizeDescElement = createElem(
-  "p",
+const sizeDescElement = createElem("p", sizeContainerElement, "size-desc", "");
+sizeDescElement.innerHTML =
+  "Dog size: Small < 15 kg | Medium 15 < 45 kg | Big > 45 kg";
+
+const containerSizeOptions = createElem(
+  "div",
   sizeContainerElement,
-  "size-desc",
-  "",
-  "",
+  `container-size-options`,
   ""
 );
-sizeDescElement.innerHTML =
-  "Small = dog under 15kg, Medium = dog from 15 to 45 kg, Big = dog over 45 kg";
 
 dogSizeList.forEach((size) => {
   const option = size;
 
-  const sizeLabel = createElem("label", sizeContainerElement, "", "", "", "");
+  const containerUniqueSize = createElem(
+    "div",
+    containerSizeOptions,
+    `container-${option}`,
+    ""
+  );
+
+  const sizeLabel = createElem("label", containerUniqueSize, "", "size-label");
   sizeLabel.setAttribute("for", `${option}`);
   sizeLabel.innerHTML = `${option}`;
 
@@ -128,18 +159,15 @@ dogSizeList.forEach((size) => {
     "input",
     "radio",
     "size",
-    sizeContainerElement,
+    containerUniqueSize,
     `${option}`,
     "size-option",
-    `${option}`,
-    ""
+    `${option}`
   );
 });
 
 selectAnimalElement.addEventListener(`change`, (e) => {
-  selectAnimalElement.value === "dog"
-    ? (sizeContainerElement.style.visibility = "visible")
-    : (sizeContainerElement.style.visibility = "hidden");
+  isDog();
 });
 
 function clearResults() {
@@ -155,9 +183,8 @@ function matchInputData(
   unitTimeInput,
   animalUnitData
 ) {
-  const lastAnimalValuesData = Object.keys(animalValuesData)[
-    Object.keys(animalValuesData).length - 1
-  ];
+  const lastAnimalValuesData =
+    Object.keys(animalValuesData)[Object.keys(animalValuesData).length - 1];
 
   const firstAnimalValuesData = Object.keys(animalValuesData)[0];
 
@@ -172,7 +199,7 @@ function matchInputData(
     animalUnitData === "months" &&
     inputNumber < 1
   ) {
-    error = "this value is small. Please, add larger number";
+    error = "this value is too small. Please, add a larger number";
   } else if (
     (unitTimeInput === "month" &&
       inputNumber >= 1 &&
@@ -215,7 +242,6 @@ function calculateHumanYears(
   minRealValue,
   minHumanValue,
   inputNumber,
-  realValue,
   humanValue
 ) {
   if (realValueMatch.length > 1) {
@@ -232,9 +258,7 @@ function calculateHumanYears(
 }
 
 if (inputNumber === 0 && selectAnimalElement.value === "") {
-  convertBtn.disabled = true;
-  convertBtn.style.cursor = "not-allowed";
-  convertBtn.style.background = "grey";
+  setDisableBtn();
 }
 
 inputNumberElement.addEventListener("change", updateValue);
@@ -246,7 +270,7 @@ function updateValue(e) {
   if (inputNumber !== 0 && selectAnimalElement.value !== "") {
     convertBtn.disabled = false;
     convertBtn.style.cursor = "pointer";
-    convertBtn.style.background = "rgba(110, 144, 117, .6)";
+    convertBtn.style.background = "rgba(111, 73, 55, 0.75)";
   }
 }
 
@@ -258,7 +282,7 @@ function clickBtn() {
 
   const animalUnitData = animals[selectAnimal].units;
 
-  let realValue = DEFAULT_VALUE;
+  realValue = DEFAULT_VALUE;
   let humanValue = DEFAULT_VALUE;
 
   let animalValuesData = "";
@@ -292,13 +316,12 @@ function clickBtn() {
     minRealValue,
     minHumanValue,
     inputNumber,
-    realValue,
     humanValue
   );
 
   error !== ""
     ? (resultElement.innerHTML = error)
-    : (resultElement.innerHTML = `${humanValue.toFixed(2)} human Years`);
+    : (resultElement.innerHTML = `${humanValue.toFixed(2)} Human years`);
 
   containerElement.style.backgroundImage = `url(${animals[selectAnimal].url})`;
 
@@ -351,3 +374,5 @@ function closeRandomImg() {
   containerAll.style.background = "rgb(0, 0, 0, 0)";
   closeRandomDogImgBtn.style.backgroundColor = "rgb(255, 255, 255, .6)";
 }
+
+headerElement.addEventListener("click", reset);
