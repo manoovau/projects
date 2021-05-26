@@ -28,7 +28,7 @@ Used:
 
 [Live Demo](https://manoovau.github.io/vanilla-javascript-projects/animal_years_months_converter/) <br />
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/66820526/119166135-90904c00-ba5e-11eb-98cd-d44ad534091c.png" width="75%" height="75%">
+  <img src="https://user-images.githubusercontent.com/66820526/119694699-c0b86000-be4d-11eb-9732-af69eb9544b2.png" width="75%" height="75%">
 </p>
 
 ---
