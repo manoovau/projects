@@ -6,7 +6,7 @@
 
 html {
   min-height: 100%;
-  background-image: url("https://images.unsplash.com/photo-1612207768180-13415b8cd741?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=668&q=80");
+  background-image: url("../img/background.webp");
   background-color: #335145;
   background-size: cover;
   background-repeat: no-repeat;
