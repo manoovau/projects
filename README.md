@@ -78,7 +78,6 @@ Used:
 - JavaScript functions.
 - Async/await function.
 - DOM manipulation.
-![image]()
 
 [Live Demo](https://manoovau.github.io/vanilla-javascript-projects/film_database/) <br />
 <p align="center">
