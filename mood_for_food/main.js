@@ -25,12 +25,7 @@ function getDishName(response) {
   return string.substring(0, string.indexOf("/"));
 }
 
-function generateElement(
-  elementType,
-  elementParent,
-  textClassName,
-  textIdName
-) {
+function generateElement(elementType, elementParent, textClassName, textIdName) {
   const elemName = document.createElement(elementType);
   elemName.id = textIdName;
   elemName.className = textClassName;
@@ -40,27 +35,12 @@ function generateElement(
 }
 
 function displayDish(response, containerElement) {
-  const containerResElement = generateElement(
-    "div",
-    containerElement,
-    "result",
-    "result"
-  );
+  const containerResElement = generateElement("div", containerElement, "result", "result");
 
-  const dishImgElement = generateElement(
-    "img",
-    containerResElement,
-    "dish-img",
-    "dish-img"
-  );
+  const dishImgElement = generateElement("img", containerResElement, "dish-img", "dish-img");
   dishImgElement.src = response.image;
 
-  const textDishElement = generateElement(
-    "p",
-    containerResElement,
-    "",
-    "dish-name"
-  );
+  const textDishElement = generateElement("p", containerResElement, "", "dish-name");
   textDishElement.innerText = getDishName(response);
 
   return textDishElement.innerText;
@@ -100,12 +80,7 @@ async function getDish() {
     containerElement.remove();
   }
 
-  const containerElement = generateElement(
-    "div",
-    defaultDiv,
-    "results",
-    "results"
-  );
+  const containerElement = generateElement("div", defaultDiv, "results", "results");
 
   const dishName1 = displayDish(responseRes1, containerElement);
   const dishName2 = displayDish(responseRes2, containerElement);

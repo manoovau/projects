@@ -71,8 +71,7 @@ function openCard() {
   cardImgElement.classList.add("card-img-open");
 
   const cardImgOpenInvertElement = cardImgElement.cloneNode(true);
-  cardImgOpenInvertElement.style.transform =
-    "rotateY(200deg) scale(1.3) rotate(348deg)";
+  cardImgOpenInvertElement.style.transform = "rotateY(200deg) scale(1.3) rotate(348deg)";
   cardImgOpenInvertElement.id = "card-img-open-invert";
   cardImgOpenInvertElement.classList.add("card-img-open-invert");
   frameElement.appendChild(cardImgOpenInvertElement);
@@ -81,17 +80,9 @@ function openCard() {
 
   createText(frameElement, "text-card-en", "You choo choo choose me!!!");
 
-  createText(
-    frameElement,
-    "text-card-fr",
-    "Je suis ton p'tit bout de chou, chou, chou!!!"
-  );
+  createText(frameElement, "text-card-fr", "Je suis ton p'tit bout de chou, chou, chou!!!");
 
-  createText(
-    frameElement,
-    "text-card-it",
-    "Io ciuf ciuf ti acciuffo, tu ciuf ciuf acciuffi me!!!"
-  );
+  createText(frameElement, "text-card-it", "Io ciuf ciuf ti acciuffo, tu ciuf ciuf acciuffi me!!!");
 
   createText(frameElement, "text-card-de", "Ich wä wä wähle dich.!!!");
 }

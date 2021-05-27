@@ -20,13 +20,9 @@ const animalContainerElement = document.getElementById("animal-container");
 const convertBtn = document.getElementById("convert-btn");
 const resultElement = document.getElementById("result");
 const randomDogBtn = document.getElementById("btn-random-dog");
-const containerRandomDogImg = document.getElementById(
-  "container-random-dog-img"
-);
+const containerRandomDogImg = document.getElementById("container-random-dog-img");
 const randomDogImg = document.getElementById("random-dog-img");
-const closeRandomDogImgBtn = document.getElementById(
-  "btn-close-random-dog-img"
-);
+const closeRandomDogImgBtn = document.getElementById("btn-close-random-dog-img");
 const headerElement = document.getElementById("header");
 
 let inputNumber = Number(inputNumberElement.value);
@@ -46,7 +42,7 @@ function createOptionElement(
   idElement,
   classElement,
   selectOptionValue,
-  selectOptionText
+  selectOptionText,
 ) {
   const element = createElem(type, parent, idElement, classElement);
   element.value = selectOptionValue;
@@ -60,7 +56,7 @@ function createInputRadioElement(
   parent,
   idElement,
   classElement,
-  selectOptionValue
+  selectOptionValue,
 ) {
   const element = createElem(type, parent, idElement, classElement);
   element.value = selectOptionValue;
@@ -91,12 +87,7 @@ function reset() {
   setDisableBtn();
 }
 
-const selectAnimalElement = createElem(
-  "select",
-  animalContainerElement,
-  "",
-  ""
-);
+const selectAnimalElement = createElem("select", animalContainerElement, "", "");
 
 createOptionElement(
   "option",
@@ -104,7 +95,7 @@ createOptionElement(
   "select-animal-list",
   "animal-options",
   "",
-  `Select animal`
+  `Select animal`,
 );
 
 const animalsList = Object.keys(animals);
@@ -118,38 +109,22 @@ animalsList.forEach((animal) => {
     `${option}`,
     "animal-option",
     option,
-    `${option}`
+    `${option}`,
   );
 });
 
-const sizeContainerElement = createElem(
-  "div",
-  animalContainerElement,
-  "size-container",
-  ""
-);
+const sizeContainerElement = createElem("div", animalContainerElement, "size-container", "");
 sizeContainerElement.style.visibility = "hidden";
 
 const sizeDescElement = createElem("p", sizeContainerElement, "size-desc", "");
-sizeDescElement.innerHTML =
-  "Dog size: Small < 15 kg | Medium 15 < 45 kg | Big > 45 kg";
+sizeDescElement.innerHTML = "Dog size: Small < 15 kg | Medium 15 < 45 kg | Big > 45 kg";
 
-const containerSizeOptions = createElem(
-  "div",
-  sizeContainerElement,
-  `container-size-options`,
-  ""
-);
+const containerSizeOptions = createElem("div", sizeContainerElement, `container-size-options`, "");
 
 dogSizeList.forEach((size) => {
   const option = size;
 
-  const containerUniqueSize = createElem(
-    "div",
-    containerSizeOptions,
-    `container-${option}`,
-    ""
-  );
+  const containerUniqueSize = createElem("div", containerSizeOptions, `container-${option}`, "");
 
   const sizeLabel = createElem("label", containerUniqueSize, "", "size-label");
   sizeLabel.setAttribute("for", `${option}`);
@@ -162,7 +137,7 @@ dogSizeList.forEach((size) => {
     containerUniqueSize,
     `${option}`,
     "size-option",
-    `${option}`
+    `${option}`,
   );
 });
 
@@ -177,12 +152,7 @@ function clearResults() {
   error = "";
 }
 
-function matchInputData(
-  inputNumber,
-  animalValuesData,
-  unitTimeInput,
-  animalUnitData
-) {
+function matchInputData(inputNumber, animalValuesData, unitTimeInput, animalUnitData) {
   const lastAnimalValuesData =
     Object.keys(animalValuesData)[Object.keys(animalValuesData).length - 1];
 
@@ -194,11 +164,7 @@ function matchInputData(
   if (lastAnimalValuesDataFormatted < inputNumber) {
     clearResults();
     error = "Sadly this animal does not live that long...";
-  } else if (
-    unitTimeInput === "month" &&
-    animalUnitData === "months" &&
-    inputNumber < 1
-  ) {
+  } else if (unitTimeInput === "month" && animalUnitData === "months" && inputNumber < 1) {
     error = "this value is too small. Please, add a larger number";
   } else if (
     (unitTimeInput === "month" &&
@@ -209,8 +175,7 @@ function matchInputData(
       inputNumber < firstAnimalValuesDataFormatted)
   ) {
     const firstValueUnit =
-      animalValuesData[firstAnimalValuesDataFormatted] /
-      firstAnimalValuesDataFormatted;
+      animalValuesData[firstAnimalValuesDataFormatted] / firstAnimalValuesDataFormatted;
     const humanYearsCal = firstValueUnit * inputNumber;
 
     realValueMatch.push(inputNumber);
@@ -225,10 +190,7 @@ function matchInputData(
       } else if (inputNumber > realValueFormatted) {
         minRealValueArray.push(realValueFormatted);
         minRealValueArray.push(animalValuesData[realValueFormatted]);
-      } else if (
-        inputNumber < realValueFormatted &&
-        maxRealValueArray.length < 1
-      ) {
+      } else if (inputNumber < realValueFormatted && maxRealValueArray.length < 1) {
         maxRealValueArray.push(realValueFormatted);
         maxRealValueArray.push(animalValuesData[realValueFormatted]);
       } // close if
@@ -242,7 +204,7 @@ function calculateHumanYears(
   minRealValue,
   minHumanValue,
   inputNumber,
-  humanValue
+  humanValue,
 ) {
   if (realValueMatch.length > 1) {
     realValue = realValueMatch[0];
@@ -251,8 +213,7 @@ function calculateHumanYears(
     const diffRealValue = maxRealValueArray[0] - minRealValue;
     const diffHumanValue = maxRealValueArray[1] - minHumanValue;
     const diffInputRealmin = inputNumber - minRealValue;
-    humanValue =
-      minHumanValue + (diffHumanValue * diffInputRealmin) / diffRealValue;
+    humanValue = minHumanValue + (diffHumanValue * diffInputRealmin) / diffRealValue;
   }
   return humanValue;
 }
@@ -316,7 +277,7 @@ function clickBtn() {
     minRealValue,
     minHumanValue,
     inputNumber,
-    humanValue
+    humanValue,
   );
 
   error !== ""
@@ -352,8 +313,7 @@ function getRandoDogPic(urlRandomDog) {
       containerAll.style.background = "rgb(169,169,169, .4)";
 
       if (urlEnd === ".mp4" || urlEnd === "webm") {
-        randomDogImg.src =
-          "https://www.northguru.com/media/images/image-not-found.jpg";
+        randomDogImg.src = "https://www.northguru.com/media/images/image-not-found.jpg";
         closeRandomDogImgBtn.style.backgroundColor = "rgb(0, 0, 0, .6)";
       } else {
         randomDogImg.src = `${resp.url}`;
@@ -362,8 +322,7 @@ function getRandoDogPic(urlRandomDog) {
     })
     .catch((err) => {
       closeRandomDogImgBtn.style.backgroundColor = "rgb(255, 255, 255, .6)";
-      randomDogImg.src =
-        "https://www.northguru.com/media/images/image-not-found.jpg";
+      randomDogImg.src = "https://www.northguru.com/media/images/image-not-found.jpg";
       console.error(err);
     });
 }

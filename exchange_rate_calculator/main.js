@@ -1,9 +1,7 @@
 const amountElement = document.getElementById("original-currency-amount");
 const exchangeButton = document.getElementById("exchange");
 const exchangeRateDisplayElement = document.getElementById("exchange-rate");
-const originalCurrencyElement = document.getElementById(
-  "original-currency-unit"
-);
+const originalCurrencyElement = document.getElementById("original-currency-unit");
 const newCurrencyElement = document.getElementById("new-currency-unit");
 const outputTextElement = document.getElementById("output-text");
 const dateElement = document.getElementById("date");
@@ -94,10 +92,7 @@ exchangeButton.addEventListener("click", () => {
 
         const exchangeRateFormatted = exchangeRate.toFixed(2);
         const amountFormatted = formatAsCurrency(amount, originalCurrency);
-        const exchangeAmountFormatted = formatAsCurrency(
-          exchangeAmount,
-          newCurrency
-        );
+        const exchangeAmountFormatted = formatAsCurrency(exchangeAmount, newCurrency);
 
         // Update the result in the UI
         exchangeRateDisplayElement.innerText = exchangeRateFormatted;

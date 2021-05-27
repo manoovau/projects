@@ -1,35 +1,39 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Exchange Rate Calculator</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet"> 
-    </head>
-    <body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exchange Rate Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <h1>Amazing Currency Converter</h1>
     <p>
-        Convert
-        <input type="number" id="original-currency-amount" placeholder="1" step="any"></input> <br>
-        <select id='original-currency-unit'></select>
-   to
-        <select id='new-currency-unit'></select>
+      Convert
+      <input type="number" id="original-currency-amount" placeholder="1" step="any" /><br />
+      <select id="original-currency-unit"></select>
+      to
+      <select id="new-currency-unit"></select>
     </p>
-    
+
     <p>
-        Exchange Rate:
-        <span id="exchange-rate"></span>
+      Exchange Rate:
+      <span id="exchange-rate"></span>
     </p>
     <button id="exchange">Exchange my money now!</button>
     <p id="output-text"></p>
     <p id="date"></p>
-    
 
     <script src="main.js"></script>
-    </body>
+  </body>
 </html>
