@@ -56,6 +56,7 @@ h1 {
   padding: 0.5em;
   margin: 0.5em auto 0;
   cursor: pointer;
+  max-width: 250px;
 }
 
 button {
@@ -152,8 +153,8 @@ select {
 #container-random-dog-img {
   position: absolute;
   width: 100%;
-  height: 505px;
-  top: 75px;
+  height: 540px;
+  top: 102px;
   margin: 0;
   overflow: hidden;
 }
@@ -163,24 +164,27 @@ select {
 }
 
 #random-dog-img {
+  display: block;
+  position: relative;
+  top: 0.25rem;
   border-radius: 5px;
   object-fit: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 100%;
-  height: 565px;
+  height: 535px;
   background-size: cover;
   z-index: 2;
 }
 
 #btn-random-dog {
-  margin: 2.5em 0;
+  margin: 2em 0;
 }
 
 #btn-close-random-dog-img {
   position: absolute;
   z-index: 5;
-  right: 1.5vh;
+  right: 1em;
   font-size: 1em;
   padding: 0.5em 0.75em;
   border-radius: 50%;
@@ -281,18 +285,41 @@ select {
   #random-dog-img {
     border-radius: 20px;
     height: 675px;
+    width: 91%;
+    margin: 0 auto;
+  }
+
+  #btn-close-random-dog-img {
+    top: 0.5em;
+    right: 2.5em;
   }
 
   .container {
     border-radius: 20px;
     margin: 2em auto;
     min-height: 600px;
+    width: 90%;
   }
 
   .description {
     font-size: 1.5rem;
   }
+
+  .size-label {
+    font-size: 1rem;
+  }
+
+  option {
+    font-size: 1rem;
+  }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
+  #random-dog-img {
+    width: 95%;
+  }
+
+  #container-random-dog-img {
+    max-width: 1050px;
+  }
 }
