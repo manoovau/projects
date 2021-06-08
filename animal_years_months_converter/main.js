@@ -289,19 +289,19 @@ function clickBtn() {
   clearResults();
 } // close click btn
 
-randomDogBtn.addEventListener("click", getRandoDogPic);
+randomDogBtn.addEventListener("click", getRandomDogPic);
 closeRandomDogImgBtn.addEventListener("click", closeRandomImg);
 
-function getRandoDogPic(urlRandomDog) {
+async function getInfo(url) {
+  const data = await fetch(url);
+  const response = await data.json();
+
+  return response;
+}
+
+function getRandomDogPic() {
   containerRandomDogImg.classList.remove("hidden");
   containerRandomDogImg.classList.add("show");
-
-  async function getInfo(url) {
-    const data = await fetch(url);
-    const response = await data.json();
-
-    return response;
-  }
 
   const randomDogData = getInfo(RANDOM_DOG_URL);
 
@@ -313,8 +313,7 @@ function getRandoDogPic(urlRandomDog) {
       containerAll.style.background = "rgb(169,169,169, .4)";
 
       if (urlEnd === ".mp4" || urlEnd === "webm") {
-        randomDogImg.src = "https://www.northguru.com/media/images/image-not-found.jpg";
-        closeRandomDogImgBtn.style.backgroundColor = "rgb(0, 0, 0, .6)";
+        getRandomDogPic();
       } else {
         randomDogImg.src = `${resp.url}`;
         closeRandomDogImgBtn.style.backgroundColor = "rgb(255, 255, 255, .6)";
